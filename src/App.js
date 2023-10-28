@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import React from "react";
 
+import DummyChart from "./tabs/dummyChart";
+import DummyList from "./tabs/dummyList";
+import DummyTable from "./tabs/dummyTable";
+import RootEl from "./components/rootEl";
+import Layout from "./components/layout";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <RootEl/>,
+        },
+        {
+            path: '/dummyChart',
+            element: <Layout el={<DummyChart />}/>
+        },
+        {
+            path: '/dummyList',
+            element: <Layout el={<DummyList/>}/>
+        },
+        {
+            path: '/dummyTable',
+            element: <Layout el={<DummyTable/>}/>
+        }
+    ])
+
+    return <RouterProvider router={router}/>
 }
 
 export default App;
